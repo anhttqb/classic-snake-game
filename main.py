@@ -30,10 +30,10 @@ score_board = ScoreBoard()
 screen.listen()
 
 
-screen.onkey(key="Up", fun=snake.up)
-screen.onkey(key="Down", fun=snake.down)
-screen.onkey(key="Left", fun=snake.left)
-screen.onkey(key="Right", fun=snake.right)
+screen.onkey(key="w", fun=snake.up)
+screen.onkey(key="s", fun=snake.down)
+screen.onkey(key="a", fun=snake.left)
+screen.onkey(key="d", fun=snake.right)
 
 game_is_on = True
 while game_is_on:
@@ -50,15 +50,15 @@ while game_is_on:
 
     # Detect collision with wall
     if snake.head.xcor() > 290 or snake.head.xcor() < -295 or snake.head.ycor() > 295 or snake.head.ycor() < -290:
-        score_board.game_over()
-        game_is_on = False
+        score_board.reset()
+        snake.reset()
 
     # Detect collision with tail
     for segment in snake.segments[1:]: # loop through the body's snake except the head
         # if snake's head collides with any segment in the tail.
         if snake.head.distance(segment) < 10:
-            score_board.game_over()
-            game_is_on = False
+            score_board.reset()
+            snake.reset()
 
 
 
